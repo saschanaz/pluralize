@@ -1,20 +1,6 @@
 /* global define */
 
-(function (root, pluralize) {
-  /* istanbul ignore else */
-  if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
-    // Node.
-    module.exports = pluralize();
-  } else if (typeof define === 'function' && define.amd) {
-    // AMD, registers as an anonymous module.
-    define(function () {
-      return pluralize();
-    });
-  } else {
-    // Browser global.
-    root.pluralize = pluralize();
-  }
-})(this, function () {
+function pluralize() {
   // Rule storage - pluralize and singularize need to be run sequentially,
   // while other rules can be optimized using an object for instant lookups.
   var pluralRules = [];
@@ -500,4 +486,6 @@
   ].forEach(pluralize.addUncountableRule);
 
   return pluralize;
-});
+};
+
+export default pluralize();
